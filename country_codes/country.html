@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+	<script type="text/javascript" src="lib/angular-resource.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	
+
+
+    <title>Country codes</title>
+    
+    <script>
+        
+        var myApp = angular.module('myApp',[]);
+/*
+        myApp.controller('myCtrl', function($scope, $http, $filter){ 
+        
+            $http.get('lib/country_codes.json').success(function(data){
+               
+                $scope.countries = data;
+            });
+        });
+*/
+        
+         myApp.controller('myCtrl_flights', function($scope, $http, $filter){ 
+        
+            $http.get('lib/flights.json').success(function(data){
+               
+                $scope.flights = data;
+            });
+        });
+
+        
+    </script>
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<!--[if lte IE 8]>
+		<script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+    
+    <!--<div class="container"  ng-controller="myCtrl">
+            
+            <div class="rows">
+            <br><br>        
+                    <h4> Fetching data from json file</h4>
+                
+                    <div class="rows">
+                
+                    <input type="text" class="input" placeholder="name" ng-model="searchData" />
+            </div>
+        
+
+                    <table class="table" id="searchData">
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Population</th>
+                        </tr>
+                        <tr ng-repeat="country in countries | filter: searchData" >
+                                <td>{{ country.code }}</td>
+                                <td>{{ country.name }}</td>
+                                <td>{{ country.population }}</td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+-->    
+    <div class="container"  ng-controller="myCtrl_flights">
+            
+            
+            <div class="rows">
+            <br><br>        
+                    <h4> Fetching data from json file</h4>
+                
+                    <div class="rows">
+                
+                    <input type="text" class="input" placeholder="name" ng-model="flightsData" />
+            </div>
+        
+
+                    <table class="table" id="searchData">
+                        <tr>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Price</th>
+                        </tr>
+                        <tr ng-repeat="flight in flights | filter: flightsData" >
+                                <td>{{ flight.origin }}</td>
+                                <td><a href="#">{{ flight.destination }}</a></td>
+                                <td>{{ flight.price | currency}}</td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+</body>
+
+</html>
